@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 2,
+  "id": "sk_season_data",
+  "title": "Soul Knight — Mùa giải & Chip (season_data)",
+  "description": "Chỉnh Xu Mùa giải, mở khóa kỹ năng & nạp đủ 20 Chip cấp 10 / tinh luyện 10.",
+  "catalogRef": "catalogs/items_vi_en.json",
+  "presetRef": "presets/full_resources_80800.json",
+  "sections": [
+    {
+      "id": "season_coins",
+      "title": "Xu Mùa giải & Chip",
+      "fields": [
+        {
+          "type": "number_stepper",
+          "id": "season_coin",
+          "label": "Xu Mùa giải (coin)",
+          "jsonPath": "$.coin",
+          "description": "Dùng để mua rương, skin và vũ khí Thần thoại trong Cửa hàng Mùa giải.",
+          "min": 0,
+          "max": 99999999,
+          "safeMax": 4999999,
+          "step": 10000,
+          "quickAddPresets": [10000, 100000, 1000000]
+        },
+        {
+          "type": "preset_action",
+          "id": "season_chips_full",
+          "label": "Nạp Full 20 Chip Mùa giải (Level 10 • Tinh luyện 10)",
+          "jsonPath": "$.chips",
+          "description": "Tự chọn chuẩn số nguyên cho .data.new hoặc chuẩn chuỗi cho .data cũ, loại trùng theo chipName.",
+          "presetKey": "season_chips_modern",
+          "legacyPresetKey": "season_chips_legacy",
+          "dedupeKey": "chipName",
+          "overwriteExisting": true,
+          "buttonLabel": "Nạp Full 20 Chip Max Lv.10"
+        },
+        {
+          "type": "number_stepper",
+          "id": "extra_replace_hero",
+          "label": "Số ô đổi tướng thêm (extraReplaceHeroSeatCount)",
+          "jsonPath": "$.extraReplaceHeroSeatCount",
+          "min": 0,
+          "max": 20,
+          "safeMax": 5,
+          "step": 1,
+          "quickAddPresets": [1, 2, 5]
+        }
+      ]
+    },
+    {
+      "id": "troop2",
+      "title": "Kỹ năng Chế độ Mùa giải",
+      "fields": [
+        {
+          "type": "boolean_switch",
+          "id": "troop2_haste",
+          "label": "Mở kỹ năng Tăng tốc (hasUnlockTroop2SkillHaste)",
+          "jsonPath": "$.hasUnlockTroop2SkillHaste"
+        },
+        {
+          "type": "boolean_switch",
+          "id": "troop2_frost",
+          "label": "Mở kỹ năng Băng giá (hasUnlockTroop2SkillFrostBurst)",
+          "jsonPath": "$.hasUnlockTroop2SkillFrostBurst"
+        },
+        {
+          "type": "boolean_switch",
+          "id": "troop2_shield",
+          "label": "Mở kỹ năng Khiên (hasUnlockTroop2SkillShield)",
+          "jsonPath": "$.hasUnlockTroop2SkillShield"
+        },
+        {
+          "type": "boolean_switch",
+          "id": "troop2_power",
+          "label": "Mở kỹ năng Tăng lực (hasUnlockTroop2SkillPowerUp)",
+          "jsonPath": "$.hasUnlockTroop2SkillPowerUp"
+        },
+        {
+          "type": "boolean_switch",
+          "id": "troop2_bonus",
+          "label": "Mở kỹ năng Thưởng (hasUnlockTroop2SkillBonus)",
+          "jsonPath": "$.hasUnlockTroop2SkillBonus"
+        }
+      ]
+    }
+  ]
+}

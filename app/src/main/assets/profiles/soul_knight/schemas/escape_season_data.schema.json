@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 2,
+  "id": "sk_escape_season_data",
+  "title": "Soul Knight — Mùa giải Đảo Điên / Escape (escape_season_data)",
+  "description": "Chỉnh Tiền Sắt, mở rộng sức chứa Túi đồ / Kho / Két an toàn và cấp cúp vàng.",
+  "catalogRef": "catalogs/items_vi_en.json",
+  "sections": [
+    {
+      "id": "escape_currency",
+      "title": "Tiền & Tiến trình",
+      "fields": [
+        {
+          "type": "number_stepper",
+          "id": "escape_money",
+          "label": "Tiền Sắt hiện có (money)",
+          "jsonPath": "$.money",
+          "min": 0,
+          "max": 99999999,
+          "safeMax": 9999999,
+          "step": 10000,
+          "quickAddPresets": [10000, 100000, 1000000]
+        },
+        {
+          "type": "number_stepper",
+          "id": "escape_total_money",
+          "label": "Tổng Tiền Sắt tích lũy (totalIronMoneyEarned)",
+          "jsonPath": "$.totalIronMoneyEarned",
+          "min": 0,
+          "max": 99999999,
+          "safeMax": 9999999,
+          "step": 10000,
+          "quickAddPresets": [100000, 1000000]
+        },
+        {
+          "type": "number_stepper",
+          "id": "escape_gold_cup",
+          "label": "Cấp thưởng Cúp Vàng (escapeGoldCupClaimedRewardLevel)",
+          "jsonPath": "$.escapeGoldCupClaimedRewardLevel",
+          "min": 0,
+          "max": 10,
+          "safeMax": 3,
+          "step": 1,
+          "quickAddPresets": [1, 3]
+        }
+      ]
+    },
+    {
+      "id": "escape_storage",
+      "title": "Sức chứa Túi & Kho",
+      "fields": [
+        {
+          "type": "number_stepper",
+          "id": "bag_slots",
+          "label": "Số ô Túi đồ (playerBag.slotCount)",
+          "jsonPath": "$.playerBag.slotCount",
+          "min": 10,
+          "max": 500,
+          "safeMax": 120,
+          "step": 10,
+          "quickAddPresets": [20, 50, 100]
+        },
+        {
+          "type": "number_stepper",
+          "id": "warehouse_slots",
+          "label": "Số ô Kho chứa (warehouse.slotCount)",
+          "jsonPath": "$.warehouse.slotCount",
+          "min": 20,
+          "max": 1000,
+          "safeMax": 500,
+          "step": 20,
+          "quickAddPresets": [50, 100, 320]
+        },
+        {
+          "type": "number_stepper",
+          "id": "safe_slots",
+          "label": "Số ô Két an toàn (safeSlots.slotCount)",
+          "jsonPath": "$.safeSlots.slotCount",
+          "min": 1,
+          "max": 50,
+          "safeMax": 12,
+          "step": 1,
+          "quickAddPresets": [2, 4, 8]
+        }
+      ]
+    }
+  ]
+}

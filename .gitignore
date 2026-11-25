@@ -1,0 +1,32 @@
+# Gradle & Android build outputs
+.gradle/
+.kotlin/
+/local.properties
+/.idea/
+*.iml
+/build/
+/*/build/
+/*/*/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+
+# Rust build artifacts
+/rust/target/
+
+# Signing keys & secrets
+*.keystore
+*.jks
+*.pem
+*.p12
+*.env
+
+# Compiled packages & user backups (publish APKs via GitHub Releases instead)
+*.apk
+*.aab
+*.skdb
+*.zip
+
+# OS junk
+.DS_Store
+Thumbs.db

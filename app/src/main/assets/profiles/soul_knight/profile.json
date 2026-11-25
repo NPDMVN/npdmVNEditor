@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 2,
+  "id": "chillyroom.soul_knight",
+  "displayName": "Soul Knight",
+  "developer": "ChillyRoom",
+  "engine": "unity",
+  "packages": [
+    "com.ChillyRoom.DungeonShooter",
+    "com.chillyroom.dungeonshooter.kt"
+  ],
+  "paths": {
+    "filesDir": "files",
+    "sharedPrefs": "shared_prefs/{package}.v2.playerprefs.xml"
+  },
+  "codecs": {
+    "b64": {
+      "type": "base64",
+      "description": "Base64 wrapper for DES-encrypted ChillyRoom shards"
+    },
+    "sk_xor": {
+      "type": "xor",
+      "keyHex": "736c637a7d6775637f576d6c6b4a5f",
+      "description": "Soul Knight 15-byte repeating XOR codec (game.data)"
+    },
+    "sk_des_default_raw": {
+      "type": "des_cbc_pkcs5",
+      "keyHex": "69616d626f000000",
+      "ivHex": "4168626f6f6c0000",
+      "description": "DES/CBC/PKCS5Padding default key (iambo)"
+    },
+    "sk_des_statistic_raw": {
+      "type": "des_cbc_pkcs5",
+      "keyHex": "6372737431000000",
+      "ivHex": "4168626f6f6c0000",
+      "description": "DES/CBC/PKCS5Padding statistic key (crst1)"
+    },
+    "sk_des_default": {
+      "type": "chain",
+      "steps": ["b64", "sk_des_default_raw"],
+      "description": "Base64 + DES/CBC default codec (item_data, season_data, task, setting, ...)"
+    },
+    "sk_des_statistic": {
+      "type": "chain",
+      "steps": ["b64", "sk_des_statistic_raw"],
+      "description": "Base64 + DES/CBC statistic codec (statistic.data)"
+    },
+    "sk_aes_v2": {
+      "type": "aes_cbc_zero_bom",
+      "keyHex": "4ff564b5efa57ea7d320a714b6baad8a307a426c15af0e9a40709eb050ae3c40",
+      "ivHex": "198a9eb7a7f8e766b37fd176fd8aaaa9",
+      "description": "Soul Knight 6.x–8.x AES-256-CBC Zero-Padding + UTF-8 BOM (.data.new)"
+    }
+  },
+  "fileRules": [
+    {
+      "match": "^(battle|battles|net_battle|sandbox_config|sandbox_maps)(_.*)?\\.data$",
+      "codec": "plain",
+      "format": "json",
+      "label": "Trận đấu / Sandbox (JSON thường)"
+    },
+    {
+      "match": "^item_data(_.*)?\\.data\\.(new|rij)$",
+      "codec": "sk_aes_v2",
+      "format": "json",
+      "visualSchema": "schemas/item_data.schema.json",
+      "label": "Kho đồ, Nguyên liệu, Bản vẽ & Trang sức (.data.new)"
+    },
+    {
+      "match": "^weapon_evolution_data(_.*)?\\.data\\.(new|rij)$",
+      "codec": "sk_aes_v2",
+      "format": "json",
+      "visualSchema": "schemas/weapon_evolution.schema.json",
+      "label": "Tiến hóa & Skin vũ khí (.data.new)"
+    },
+    {
+      "match": "^season_data(_.*)?\\.data\\.(new|rij)$",
+      "codec": "sk_aes_v2",
+      "format": "json",
+      "visualSchema": "schemas/season_data.schema.json",
+      "label": "Xu Mùa giải & Chip (.data.new)"
+    },
+    {
+      "match": "^escape_season_data(_.*)?\\.data\\.(new|rij)$",
+      "codec": "sk_aes_v2",
+      "format": "json",
+      "visualSchema": "schemas/escape_season_data.schema.json",
+      "label": "Mùa giải Đảo Điên / Escape (.data.new)"
+    },
+    {
+      "match": "^statistic(_.*)?\\.data\\.(new|rij)$",
+      "codec": "sk_aes_v2",
+      "format": "json",
+      "visualSchema": "schemas/statistic.schema.json",
+      "label": "Thống kê & Bàn Rèn vũ khí (.data.new)"
+    },
+    {
+      "match": "^monsrise_data(_.*)?\\.data\\.(new|rij)$",
+      "codec": "sk_aes_v2",
+      "format": "json",
+      "visualSchema": "schemas/monsrise_data.schema.json",
+      "label": "Đấu trường Quái vật (.data.new)"
+    },
+    {
+      "match": "^setting(_.*)?\\.data\\.(new|rij)$",
+      "codec": "sk_aes_v2",
+      "format": "json",
+      "visualSchema": "schemas/setting_data.schema.json",
+      "label": "Cài đặt game & Cờ định dạng (.data.new)"
+    },
+    {
+      "match": "^bp_data(_.*)?\\.data\\.(new|rij)$",
+      "codec": "sk_aes_v2",
+      "format": "json",
+      "label": "Battle Pass (.data.new)"
+    },
+    {
+      "match": "^task(_.*)?\\.data\\.(new|rij)$",
+      "codec": "sk_aes_v2",
+      "format": "json",
+      "label": "Nhiệm vụ & Thành tựu (.data.new)"
+    },
+    {
+      "match": "^pvp_data(_.*)?\\.data\\.(new|rij)$",
+      "codec": "sk_aes_v2",
+      "format": "json",
+      "label": "Dữ liệu PvP (.data.new)"
+    },
+    {
+      "match": "^misc_data(_.*)?\\.data\\.(new|rij)$",
+      "codec": "sk_aes_v2",
+      "format": "json",
+      "label": "Sự kiện & Hiệu ứng kết liễu (.data.new)"
+    },
+    {
+      "match": "^mall_reload_data(_.*)?\\.data\\.(new|rij)$",
+      "codec": "sk_aes_v2",
+      "format": "json",
+      "label": "Cửa hàng & Làm mới (.data.new)"
+    },
+    {
+      "match": "^escape_run_save(_.*)?\\.data\\.(new|rij)$",
+      "codec": "sk_aes_v2",
+      "format": "json",
+      "label": "Tiến trình trận Escape (.data.new)"
+    },
+    {
+      "match": ".*\\.data\\.(rij|new)$",
+      "codec": "sk_aes_v2",
+      "format": "json",
+      "label": "Dữ liệu định dạng mới (AES .data.new)"
+    },
+    {
+      "match": "^statistic.*\\.data$",
+      "codec": "sk_des_statistic",
+      "format": "json",
+      "visualSchema": "schemas/statistic.schema.json",
+      "label": "Thống kê & Bàn Rèn vũ khí (DES cũ)"
+    },
+    {
+      "match": "^game(_.*)?\\.data$",
+      "codec": "sk_xor",
+      "format": "json",
+      "visualSchema": "schemas/game_data.schema.json",
+      "label": "Tiến trình chính: Tướng, Skin, Thú cưng, Gems (XOR)"
+    },
+    {
+      "match": "^item_data(_.*)?\\.data$",
+      "codec": "sk_des_default",
+      "format": "json",
+      "visualSchema": "schemas/item_data.schema.json",
+      "label": "Kho đồ & Nguyên liệu (DES cũ)"
+    },
+    {
+      "match": "^weapon_evolution_data(_.*)?\\.data$",
+      "codec": "sk_des_default",
+      "format": "json",
+      "visualSchema": "schemas/weapon_evolution.schema.json",
+      "label": "Tiến hóa & Skin vũ khí (DES cũ)"
+    },
+    {
+      "match": "^season_data(_.*)?\\.data$",
+      "codec": "sk_des_default",
+      "format": "json",
+      "visualSchema": "schemas/season_data.schema.json",
+      "label": "Xu Mùa giải & Chip (DES cũ)"
+    },
+    {
+      "match": "^escape_season_data(_.*)?\\.data$",
+      "codec": "sk_des_default",
+      "format": "json",
+      "visualSchema": "schemas/escape_season_data.schema.json",
+      "label": "Mùa giải Đảo Điên / Escape (DES cũ)"
+    },
+    {
+      "match": "^monsrise_data(_.*)?\\.data$",
+      "codec": "sk_des_default",
+      "format": "json",
+      "visualSchema": "schemas/monsrise_data.schema.json",
+      "label": "Đấu trường Quái vật (DES cũ)"
+    },
+    {
+      "match": "^setting(_.*)?\\.data$",
+      "codec": "sk_des_default",
+      "format": "json",
+      "visualSchema": "schemas/setting_data.schema.json",
+      "label": "Cài đặt game (DES cũ)"
+    },
+    {
+      "match": "^.*\\.data$",
+      "codec": "sk_des_default",
+      "format": "json",
+      "label": "Dữ liệu game (DES cũ)"
+    },
+    {
+      "match": ".*\\.v2\\.playerprefs\\.xml$",
+      "codec": "plain",
+      "format": "xml",
+      "label": "Unity PlayerPrefs (Đồng bộ Tướng/Skin/Gems)"
+    }
+  ],
+  "sanitizer": {
+    "playerPrefsRemovePatterns": [
+      ".*cloudSaveId.*",
+      ".*UsedAccounts.*",
+      "^unity\\.cloud_userid$",
+      ".*unity\\.player_session.*",
+      ".*SdkStateCache.*",
+      ".*SdkUserCache.*",
+      "^last_account_id$",
+      "^last_chilly_uid$",
+      "^account$",
+      "^accountLoginRecords$",
+      "^account_enter_game_count_today$",
+      "^account2.*$"
+    ],
+    "jsonStripKeys": [
+      "fixGP_Test",
+      "account2Birthday",
+      "account2ChangeCount",
+      "account2Name",
+      "account2PersonId",
+      "account2ThisDayTime",
+      "account2ResetAdditionDay",
+      "account2ResetPurchaseDay",
+      "account2PurchaseTotal",
+      "PlayerBirthNameDatas",
+      "HasSolveOldRealNameData2NewData",
+      "activeShopGemReceiptMarkers",
+      "activeShopReceiptMarkers",
+      "KrppCountedOrderIds"
+    ],
+    "accountSuffixRegex": "_(\\d+|LOCAL)_?\\.data(\\.new)?$"
+  },
+  "features": {
+    "accountClear": true,
+    "ssaidSpoof": true,
+    "forceStopBeforeWrite": true
+  }
+}

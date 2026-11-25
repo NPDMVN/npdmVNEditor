@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 2,
+  "id": "sk_item_data",
+  "title": "Soul Knight — Kho đồ & Tài nguyên (item_data)",
+  "description": "Quản lý & nạp full 1 chạm 133 nguyên liệu & mảnh, 47 hạt giống, 280 bản vẽ, 229 phiếu, 32 vũ khí Thần thoại, 15 trang sức và toàn bộ ô vườn (hỗ trợ cả .data.new lẫn .data cũ).",
+  "catalogRef": "catalogs/items_vi_en.json",
+  "presetRef": "presets/full_resources_80800.json",
+  "sections": [
+    {
+      "id": "materials",
+      "title": "Nguyên liệu (133)",
+      "fields": [
+        {
+          "type": "inventory_grid",
+          "id": "materials_map",
+          "label": "Kho vật liệu, mảnh phép, vé & băng nhạc (materials)",
+          "jsonPath": "$.materials",
+          "valueType": "int_count",
+          "min": 0,
+          "max": 999999,
+          "batchSetPresets": [99, 999, 9999],
+          "presetKey": "materials_all",
+          "presetButtonLabel": "+ Nạp đủ 133 nguyên liệu & mảnh"
+        }
+      ]
+    },
+    {
+      "id": "seeds",
+      "title": "Hạt giống & Vé",
+      "fields": [
+        {
+          "type": "inventory_grid",
+          "id": "seeds_map",
+          "label": "Hạt giống vườn (seeds)",
+          "jsonPath": "$.seeds",
+          "valueType": "int_count",
+          "min": 0,
+          "max": 99999,
+          "batchSetPresets": [50, 99, 999],
+          "presetKey": "seeds_all",
+          "presetButtonLabel": "+ Nạp đủ 47 hạt giống"
+        },
+        {
+          "type": "inventory_grid",
+          "id": "token_tickets_map",
+          "label": "Phiếu vũ khí / hệ số / trang bị (tokenTickets)",
+          "jsonPath": "$.tokenTickets",
+          "valueType": "int_count",
+          "min": 0,
+          "max": 99999,
+          "batchSetPresets": [99, 999, 5000],
+          "presetKey": "token_tickets_all",
+          "presetButtonLabel": "+ Nạp đủ 229 loại phiếu"
+        },
+        {
+          "type": "inventory_grid",
+          "id": "special_tickets_map",
+          "label": "Vé đặc biệt (specialTickets)",
+          "jsonPath": "$.specialTickets",
+          "valueType": "int_count",
+          "min": 0,
+          "max": 9999,
+          "batchSetPresets": [99],
+          "presetKey": "special_tickets_all",
+          "presetButtonLabel": "+ Nạp vé đặc biệt"
+        }
+      ]
+    },
+    {
+      "id": "blueprints",
+      "title": "Bản vẽ (280)",
+      "fields": [
+        {
+          "type": "inventory_grid",
+          "id": "blueprints_map",
+          "label": "Bản vẽ vũ khí & cơ giáp (tự nhận diện định dạng .data.new = 2 / .data = Researched)",
+          "jsonPath": "$.blueprints",
+          "valueType": "auto_enum_unlock",
+          "unlockedStringValue": "Researched",
+          "lockedStringValue": "Got",
+          "presetKey": "blueprints_modern",
+          "legacyPresetKey": "blueprints_legacy",
+          "presetButtonLabel": "+ Nạp & mở full 280 bản vẽ"
+        }
+      ]
+    },
+    {
+      "id": "special_gear",
+      "title": "Thần thoại, Trang sức & Vườn",
+      "fields": [
+        {
+          "type": "preset_action",
+          "id": "unlock_garden_and_moto",
+          "label": "Mở khóa Full 6 Ô Vườn + Xe Máy (itemUnlock)",
+          "jsonPath": "$.itemUnlock",
+          "description": "Mở khóa Motorcycle và toàn bộ các ô trồng cây (plant_pot3 → plant_pot7).",
+          "presetKey": "item_unlock_all",
+          "overwriteExisting": false,
+          "buttonLabel": "Mở Full Ô Vườn & Xe Máy"
+        },
+        {
+          "type": "preset_action",
+          "id": "unlock_mythic_weapons",
+          "label": "Mở khóa Full 32 Vũ khí Thần thoại cấp 3 (mythicWeapons)",
+          "jsonPath": "$.mythicWeapons",
+          "description": "Nạp toàn bộ 32 vũ khí Thần thoại (id 0..31) ở cấp tối đa (level 3), tự loại trùng theo id.",
+          "presetKey": "mythic_weapons_all",
+          "dedupeKey": "id",
+          "overwriteExisting": true,
+          "buttonLabel": "Nạp Full 32 Vũ khí Thần thoại Lv.3"
+        },
+        {
+          "type": "preset_action",
+          "id": "unlock_jewelry_data",
+          "label": "Mở khóa Full 15 Trang sức (jewelryData — độ bền chuẩn 100)",
+          "jsonPath": "$.jewelryData",
+          "description": "Tự chọn chuẩn số nguyên cho .data.new hoặc chuẩn chuỗi cho .data cũ.",
+          "presetKey": "jewelry_modern",
+          "legacyPresetKey": "jewelry_legacy",
+          "overwriteExisting": true,
+          "buttonLabel": "Nạp Full 15 Trang sức (Bền 100)"
+        },
+        {
+          "type": "number_stepper",
+          "id": "egg_machine_times",
+          "label": "Số lượt quay Máy Trứng hôm nay (eggMachineTimes)",
+          "jsonPath": "$.eggMachineTimes",
+          "min": 0,
+          "max": 9999,
+          "safeMax": 999,
+          "step": 10,
+          "quickAddPresets": [10, 50, 100]
+        },
+        {
+          "type": "number_stepper",
+          "id": "cumulative_fish_count",
+          "label": "Tổng số lần câu cá (cumulativeFishCount)",
+          "jsonPath": "$.cumulativeFishCount",
+          "min": 0,
+          "max": 999999,
+          "safeMax": 9999,
+          "step": 100,
+          "quickAddPresets": [100, 1000, 5000]
+        },
+        {
+          "type": "boolean_switch",
+          "id": "got_bossrush_ticket",
+          "label": "Đã nhận vé Boss Rush (got_bossrush_ticket)",
+          "jsonPath": "$.got_bossrush_ticket"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "id": "chillyroom.otherworld_legends",
+  "displayName": "Otherworld Legends",
+  "developer": "ChillyRoom",
+  "engine": "unity",
+  "packages": [
+    "com.chillyroom.zhmr.gp"
+  ],
+  "paths": {
+    "filesDir": "files",
+    "sharedPrefs": "shared_prefs/{package}.v2.playerprefs.xml"
+  },
+  "codecs": {
+    "owl_aes": {
+      "type": "aes_cbc_pkcs5",
+      "keyHex": "<configure_via_external_profile>",
+      "ivHex": "<configure_via_external_profile>",
+      "description": "Khung codec AES cho Otherworld Legends — có thể cập nhật khóa qua tính năng Nhập Profile"
+    }
+  },
+  "fileRules": [
+    {
+      "match": ".*\\.(data|sav|dat)$",
+      "codec": "owl_aes",
+      "format": "json",
+      "label": "Save Otherworld Legends"
+    },
+    {
+      "match": ".*\\.json$",
+      "codec": "plain",
+      "format": "json",
+      "label": "JSON thuần"
+    },
+    {
+      "match": ".*\\.v2\\.playerprefs\\.xml$",
+      "codec": "plain",
+      "format": "xml",
+      "label": "Unity PlayerPrefs"
+    }
+  ],
+  "sanitizer": {
+    "playerPrefsRemovePatterns": [
+      "^cloudSaveId$",
+      "^unity\\.cloud_userid$",
+      "^account.*$"
+    ]
+  },
+  "features": {
+    "accountClear": true,
+    "ssaidSpoof": true,
+    "forceStopBeforeWrite": true
+  }
+}

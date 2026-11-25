@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 2,
+  "id": "sk_setting_data",
+  "title": "Soul Knight — Cài đặt & Cờ định dạng (setting)",
+  "description": "Bật/tắt cờ định dạng Rijndael (.data.new), chế độ bay Sandbox và các tùy chọn hiển thị.",
+  "sections": [
+    {
+      "id": "format_flags",
+      "title": "Định dạng Save & Tiện ích",
+      "fields": [
+        {
+          "type": "boolean_switch",
+          "id": "use_rij_data",
+          "label": "Dùng định dạng mới .data.new (UseRijData)",
+          "jsonPath": "$.UseRijData",
+          "description": "True = đọc/ghi .data.new (AES-256). False = đọc/ghi .data cũ (DES)."
+        },
+        {
+          "type": "boolean_switch",
+          "id": "use_newton_json",
+          "label": "Dùng NewtonJson (UseNewtonJsonData)",
+          "jsonPath": "$.UseNewtonJsonData"
+        },
+        {
+          "type": "boolean_switch",
+          "id": "sandbox_flyable",
+          "label": "Cho phép bay trong Sandbox (sandboxFlyable)",
+          "jsonPath": "$.sandboxFlyable"
+        },
+        {
+          "type": "boolean_switch",
+          "id": "show_init_weapon",
+          "label": "Hiển thị vũ khí khởi đầu (showInitWeapon)",
+          "jsonPath": "$.showInitWeapon"
+        },
+        {
+          "type": "boolean_switch",
+          "id": "double_click_buff",
+          "label": "Chạm đúp chọn Buff (doubleClickSelectBuff)",
+          "jsonPath": "$.doubleClickSelectBuff"
+        },
+        {
+          "type": "string_input",
+          "id": "chilly_uid",
+          "label": "ChillyRoom UID (ChillyUid)",
+          "jsonPath": "$.ChillyUid",
+          "readOnly": true
+        },
+        {
+          "type": "string_input",
+          "id": "bgm_name",
+          "label": "Nhạc nền phòng chờ (bgmName)",
+          "jsonPath": "$.bgmName"
+        }
+      ]
+    }
+  ]
+}

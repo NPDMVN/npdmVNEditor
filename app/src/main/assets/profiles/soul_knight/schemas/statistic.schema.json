@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 2,
+  "id": "sk_statistic",
+  "title": "Soul Knight — Thống kê, Sổ tay & Bàn Rèn Vũ khí (statistic)",
+  "description": "Mở khóa chế tạo & sổ tay toàn bộ 1.038 vũ khí tại Bàn Rèn / Hầm (object2ObtainTime + _weaponUsedTimes >= 8).",
+  "catalogRef": "catalogs/items_vi_en.json",
+  "presetRef": "presets/full_resources_80800.json",
+  "sections": [
+    {
+      "id": "forge_unlock",
+      "title": "Bàn Rèn & Sổ tay Vũ khí (1.038)",
+      "fields": [
+        {
+          "type": "inventory_grid",
+          "id": "object_obtain_times",
+          "label": "Số lần nhặt vũ khí Sổ tay & Bàn Rèn (object2ObtainTime — >= 8 lần sẽ mở rèn)",
+          "jsonPath": "$.object2ObtainTime",
+          "valueType": "int_count",
+          "min": 0,
+          "max": 99999,
+          "batchSetPresets": [10, 100, 888],
+          "presetKey": "forge_weapons_all",
+          "presetButtonLabel": "+ Nạp & mở rèn Full 1.038 vũ khí (Sổ tay)"
+        },
+        {
+          "type": "inventory_grid",
+          "id": "weapon_used_times",
+          "label": "Thống kê sử dụng vũ khí (_weaponUsedTimes)",
+          "jsonPath": "$.StatisticsData.WeaponGameStatisticData._weaponUsedTimes",
+          "valueType": "int_count",
+          "min": 0,
+          "max": 99999,
+          "batchSetPresets": [10, 100, 888],
+          "presetKey": "forge_weapons_all",
+          "presetButtonLabel": "+ Nạp Full 1.038 vũ khí (_weaponUsedTimes)"
+        }
+      ]
+    },
+    {
+      "id": "stats_misc",
+      "title": "Chỉ số & Tay không",
+      "fields": [
+        {
+          "type": "number_stepper",
+          "id": "hand_cut_index",
+          "label": "Kiểu hiệu ứng đòn Tay Không (hand_cut_index)",
+          "jsonPath": "$.hand_cut_index",
+          "min": 0,
+          "max": 10,
+          "safeMax": 4,
+          "step": 1,
+          "quickAddPresets": [1, 2, 4]
+        },
+        {
+          "type": "number_stepper",
+          "id": "buy_good_times",
+          "label": "Số lần mua hàng (buy_good_times)",
+          "jsonPath": "$.buy_good_times",
+          "min": 0,
+          "max": 999999,
+          "safeMax": 20000,
+          "step": 100,
+          "quickAddPresets": [100, 1000, 10000]
+        },
+        {
+          "type": "number_stepper",
+          "id": "explode_kill_enemy",
+          "label": "Tiêu diệt quái bằng vụ nổ (explode_kill_enemy)",
+          "jsonPath": "$.explode_kill_enemy",
+          "min": 0,
+          "max": 999999,
+          "safeMax": 10000,
+          "step": 100,
+          "quickAddPresets": [100, 1000, 5000]
+        }
+      ]
+    }
+  ]
+}

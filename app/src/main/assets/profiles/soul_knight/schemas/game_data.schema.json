@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 2,
+  "id": "sk_game_data",
+  "title": "Soul Knight — Tiến trình chính (game.data)",
+  "description": "Chỉnh sửa trực quan 42 nhân vật, toàn bộ skin, kỹ năng, 58 thú cưng, phòng khách và tiền tệ — tự động đồng bộ 2 chiều với playerprefs.xml.",
+  "catalogRef": "catalogs/items_vi_en.json",
+  "presetRef": "presets/full_resources_80800.json",
+  "sections": [
+    {
+      "id": "skins",
+      "title": "Skin tướng",
+      "icon": "style",
+      "fields": [
+        {
+          "type": "nested_pair_list",
+          "id": "skin_lock",
+          "label": "Mở khóa Skin nhân vật",
+          "jsonPath": "$.skinLock",
+          "description": "Value = 1 là đã mở khóa. Hỗ trợ mở từng skin, mở theo từng tướng hoặc mở khóa toàn bộ 1 chạm (tự đồng bộ sang playerprefs.xml).",
+          "keyField": "Key",
+          "valueField": "Value",
+          "isIntUnlock": true,
+          "unlockedIntValue": 1,
+          "lockedIntValue": 0,
+          "itemPrefix": "Skin #"
+        }
+      ]
+    },
+    {
+      "id": "heroes",
+      "title": "Nhân vật & Cấp độ",
+      "icon": "person",
+      "fields": [
+        {
+          "type": "inventory_grid",
+          "id": "hero_unlock",
+          "label": "Mở khóa nhân vật (heroUnlock)",
+          "jsonPath": "$.heroUnlock",
+          "valueType": "bool_unlock"
+        },
+        {
+          "type": "inventory_grid",
+          "id": "hero_level",
+          "label": "Cấp độ nhân vật (heroLevel — 7 là tối đa chuẩn game)",
+          "jsonPath": "$.heroLevel",
+          "valueType": "int_count",
+          "min": 0,
+          "max": 7,
+          "batchSetPresets": [5, 7]
+        }
+      ]
+    },
+    {
+      "id": "skills",
+      "title": "Kỹ năng tướng",
+      "icon": "bolt",
+      "fields": [
+        {
+          "type": "nested_pair_list",
+          "id": "hero_skill_unlock",
+          "label": "Mở khóa Kỹ năng (heroSkillUnlock)",
+          "jsonPath": "$.heroSkillUnlock",
+          "description": "Value = true là đã mở khóa kỹ năng 1/2/3 của từng tướng (tự đồng bộ sang playerprefs.xml).",
+          "keyField": "Key",
+          "valueField": "Value",
+          "isIntUnlock": false,
+          "itemPrefix": "Kỹ năng #"
+        }
+      ]
+    },
+    {
+      "id": "pets",
+      "title": "Thú cưng",
+      "icon": "pets",
+      "fields": [
+        {
+          "type": "inventory_grid",
+          "id": "pet_unlock",
+          "label": "Mở khóa Thú cưng (petUnlock — 58 thú cưng)",
+          "jsonPath": "$.petUnlock",
+          "valueType": "bool_unlock"
+        }
+      ]
+    },
+    {
+      "id": "currencies",
+      "title": "Tiền tệ",
+      "icon": "savings",
+      "fields": [
+        {
+          "type": "number_stepper",
+          "id": "gems",
+          "label": "Đá quý (gems)",
+          "jsonPath": "$.gems",
+          "description": "Tự động đồng bộ sang <UID>_gems và <UID>_last_gems trong playerprefs.xml.",
+          "min": 0,
+          "max": 2000000000,
+          "safeMax": 9999999,
+          "step": 10000,
+          "quickAddPresets": [10000, 100000, 1000000, 5000000]
+        },
+        {
+          "type": "number_stepper",
+          "id": "last_gems",
+          "label": "Đá quý lưu gần nhất (lastGems)",
+          "jsonPath": "$.lastGems",
+          "description": "Nên đặt bằng giá trị gems ở trên.",
+          "min": 0,
+          "max": 2000000000,
+          "safeMax": 9999999,
+          "step": 10000,
+          "quickAddPresets": [10000, 100000, 1000000, 5000000]
+        },
+        {
+          "type": "number_stepper",
+          "id": "fish_chip",
+          "label": "Cá khô (fishChip)",
+          "jsonPath": "$.fishChip",
+          "description": "Tự động đồng bộ sang <UID>_furniture_fish_chips trong playerprefs.xml.",
+          "min": 0,
+          "max": 999999,
+          "safeMax": 9999,
+          "step": 10,
+          "quickAddPresets": [10, 100, 500, 1000]
+        }
+      ]
+    },
+    {
+      "id": "room",
+      "title": "Phòng khách & Tiện ích",
+      "icon": "home",
+      "fields": [
+        {
+          "type": "boolean_switch",
+          "id": "reborn_card",
+          "label": "Thẻ Hồi Sinh Miễn Phí (rebornCard)",
+          "jsonPath": "$.rebornCard",
+          "description": "Tự động đồng bộ sang <UID>_reborn_card trong playerprefs.xml."
+        },
+        {
+          "type": "inventory_grid",
+          "id": "room_object_level",
+          "label": "Nâng cấp đồ phòng khách (Chest, Safe, Book, Planet, CatFood — Max 5)",
+          "jsonPath": "$.roomObjectLevel",
+          "valueType": "int_count",
+          "min": 0,
+          "max": 5,
+          "batchSetPresets": [5],
+          "presetKey": "room_objects_max",
+          "presetButtonLabel": "Nâng Max cấp 5 toàn bộ"
+        }
+      ]
+    }
+  ]
+}

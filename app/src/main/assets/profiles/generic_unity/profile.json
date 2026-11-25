@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "id": "generic.unity",
+  "displayName": "Generic Unity Game (Đa game)",
+  "developer": "Unity Engine",
+  "engine": "unity",
+  "packages": [],
+  "paths": {
+    "filesDir": "files",
+    "sharedPrefs": "shared_prefs/{package}.v2.playerprefs.xml"
+  },
+  "codecs": {
+    "base64_json": {
+      "type": "base64",
+      "description": "Giải mã Base64 cho tệp save Unity dạng chuỗi mã hóa"
+    },
+    "gzip_json": {
+      "type": "gzip",
+      "description": "Giải nén GZip cho tệp save Unity nén"
+    }
+  },
+  "fileRules": [
+    {
+      "match": ".*\\.json$",
+      "codec": "plain",
+      "format": "json",
+      "label": "JSON Save"
+    },
+    {
+      "match": ".*\\.xml$",
+      "codec": "plain",
+      "format": "xml",
+      "label": "XML / PlayerPrefs"
+    },
+    {
+      "match": ".*\\.gz$",
+      "codec": "gzip_json",
+      "format": "json",
+      "label": "GZip JSON"
+    }
+  ],
+  "sanitizer": {
+    "playerPrefsRemovePatterns": [
+      "^unity\\.cloud_userid$",
+      "^unity\\.player_session$"
+    ]
+  },
+  "features": {
+    "accountClear": true,
+    "ssaidSpoof": true,
+    "forceStopBeforeWrite": true
+  },
+  "isGeneric": true
+}

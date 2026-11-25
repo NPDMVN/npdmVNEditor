@@ -1,0 +1,21 @@
+[package]
+name = "dmedit-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+aes = "0.8"
+base64 = "0.22"
+cbc = "0.1"
+des = "0.8"
+flate2 = { version = "1.0", default-features = false, features = ["rust_backend"] }
+hex = "0.4"
+quick-xml = "0.37"
+rand = "0.8"
+regex = "1.11"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0", features = ["preserve_order"] }
+sha2 = "0.10"
+thiserror = "2.0"
+zip = { version = "2.2", default-features = false, features = ["deflate", "deflate-flate2"] }
